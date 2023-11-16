@@ -1,26 +1,51 @@
+import { NavLink } from 'react-router-dom';
 import logo2 from './assets/logo2.png'
-import{useState} from "react";
-export const Login = (props) => {
-    const [email, setEmail]= useState("");
-    const [pass, setPass]= useState("");
+//import{useState} from "react";
+import * as Yup from 'yup'
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
-    // const handleSubmit = (e) =>{
-    //     e.preventDefault();
-    //     console.log(email);
-    // }
+
+export const Login = () => {
+    const initialValues ={
+        email:'',
+        password:''
+    }
+    const validationSchema = Yup.object({
+        email: Yup.string().email("Invalid email format").required("Required"),
+        password: Yup.string().required("Required")
+    })
+    const onSubmit = values => {
+        console.log('Form data', values)
+    }
     return(
         <>
-            <div className="container_l">
-                
+            <Formik 
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={onSubmit}>
+               <div className="container_l">
                 <img src={logo2} alt="logo"/>
                 <h1>Witaj!</h1>
                 <span>zaloguj się do swojego konta</span>
-                <input style={{width:'80%'}}value={email} onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Login" id="email" name="email" className="in"/>
-                <input style={{width:'80%'}}value={pass} onChange={(e)=>setPass(e.target.value)} type="password" placeholder="Hasło" id="password" name="password" className="in"/>
-                <button>Zaloguj się</button>
+                <Form>
+                <div className="form-control">
+                <Field type='email' id='email' name = 'email' style={{width:'80%'}} placeholder="Email"  />
+                <ErrorMessage name='email'/>
+                </div>
+                <div className="form-control">
+                <Field type='password' id='password' name = 'password' style={{width:'80%'}} placeholder="Hasło" />
+                <ErrorMessage name='password'/>
+                </div>
+                <button type='submit'>Zaloguj</button>
+                </Form>               
                 <hr/>
-                <span >Nie masz konta?</span><a onClick={() =>props.onFormSwitch('register')}>Zarejejstruj się</a>
-            </div>
+                <span >Nie masz konta?</span>
+                
+                <nav>
+                    <NavLink to='register'>Zarejejstruj się</NavLink>
+                </nav>
+                </div> 
+            </Formik>
             
         </>
     )
