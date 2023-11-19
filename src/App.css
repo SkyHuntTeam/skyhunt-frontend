@@ -1,3 +1,5 @@
+
+ 
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
 
@@ -16,8 +18,8 @@
   height: 68vh;
   position: relative;
 }
-.container_r{
-  
+/* .container_r{
+ 
   display: flex;
   flex-direction: column;
   border: 2px solid rgba(255, 190, 50, 1);
@@ -30,7 +32,24 @@
   border-radius: 12px;
   background-color: rgba(255, 190, 50, 1);
   padding: 25px;
+} */
+
+.container_r {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid rgba(255, 190, 50, 1);
+  width: 80%;
+  min-height: 300px; /* Ustawienie minimalnej wysokości */
+  max-width: 800px;
+  margin: auto;
+  margin-top: 2%;
+  border-radius: 12px;
+  background-color: rgba(255, 190, 50, 1);
+  padding: 25px;
+  align-items: stretch; /* Dostosuj wysokość do zawartości */
 }
+
+
 .container_l{
   display: flex;
   flex-direction: column;
@@ -143,7 +162,7 @@ a {
   width: 100%;
   height: 70px;
   background-color: rgba(241, 250, 255, 1);
-  
+ 
 }
 
 .b_m{
@@ -162,9 +181,9 @@ a {
   letter-spacing: 1px;
   margin: 0 10px 0 10px;
 }
-.mainpframe{
-  
-  
+/* .mainpframe{
+ 
+ 
   border: 2px solid rgba(255, 190, 50, 1);
   height: 380px;
   width: 700px;
@@ -173,4 +192,24 @@ a {
   border-radius: 12px;
   background-color: rgba(255, 190, 50, 1);
   padding: 15px;
+} */
+
+
+.mainpframe{
+  border: 2px solid rgba(255, 190, 50, 1);
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  min-height: 380px; /* min-height na 100% widoku */
+  width: 700px;
+  margin: auto;
+  margin-top: 30px;
+  border-radius: 12px;
+  background-color: rgba(255, 190, 50, 1);
+  padding: 15px;
+}
+
+
+.full-width {
+  width: 100%;
 }
