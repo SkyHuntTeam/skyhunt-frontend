@@ -3,9 +3,42 @@ import logo2 from './assets/logo2.png'
 //import{useState} from "react";
 import * as Yup from 'yup'
 import { Formik, Form, Field, ErrorMessage } from "formik";
-
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export const Login = () => {
+    const navigate = useNavigate();
+  
+    const onSubmit = async (values) => {
+      try {
+        // Wyślij dane na backend za pomocą Axios
+        const response = await axios.post('http://localhost:8080/api/user/login', values);
+
+        console.log('Odpowiedź z backendu:', response.data);
+  
+        // Tutaj możesz obsłużyć odpowiedź z backendu, np. pokazać komunikat sukcesu
+        // i przekierować użytkownika do strony logowania
+
+        // Przechowaj token w stanie aplikacji, np. w localStorage
+        localStorage.setItem('authToken', response.data);
+
+
+
+        navigate('/main');
+
+
+
+
+
+      } catch (error) {
+        console.error('Błąd podczas wysyłania danych:', error);
+  
+        // Tutaj możesz obsłużyć błąd, np. pokazać komunikat o błędzie
+      }
+    };
+
+
+
     const initialValues ={
         email:'',
         password:''
@@ -14,9 +47,8 @@ export const Login = () => {
         email: Yup.string().email("Invalid email format").required("Required"),
         password: Yup.string().required("Required")
     })
-    const onSubmit = values => {
-        console.log('Form data', values)
-    }
+
+    
     return(
         <>
             <Formik 
@@ -50,4 +82,5 @@ export const Login = () => {
         </>
     )
 }
+
 export default Login
