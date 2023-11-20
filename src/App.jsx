@@ -7,6 +7,10 @@ import {Results} from './Results';
 import './App.css';
 import { BrowserRouter, Route, Routes, Link, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
 
+//import  queryClient from './clientProvider/clientProvider';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+
 // const router = createBrowserRouter(
 //   createRoutesFromElements(
 //     <Route>
@@ -15,8 +19,12 @@ import { BrowserRouter, Route, Routes, Link, createBrowserRouter, createRoutesFr
 //       </Route>
 //   )
 // )
+
 function App() {  
+  const client = new QueryClient();
   return(
+    <QueryClientProvider client={client}>
+
     <BrowserRouter>
     <main>
       <Routes>
@@ -29,7 +37,10 @@ function App() {
       </Routes>
     </main>
      </BrowserRouter>
-    // <RouterProvider router={router}/>
+    {/* //<RouterProvider router={router}/> */}
+
+    </QueryClientProvider>
+
   );
 }
 
