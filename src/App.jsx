@@ -6,6 +6,7 @@ import {Mainp} from './Mainp';
 import {Results} from './Results';
 import './App.css';
 import { BrowserRouter, Route, Routes, Link, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
+import { AuthProvider } from './AuthContext';
 
 //import  queryClient from './clientProvider/clientProvider';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -21,8 +22,10 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 // )
 
 function App() {  
+
   const client = new QueryClient();
   return(
+    <AuthProvider>
     <QueryClientProvider client={client}>
 
     <BrowserRouter>
@@ -40,10 +43,8 @@ function App() {
     {/* //<RouterProvider router={router}/> */}
 
     </QueryClientProvider>
-
+    </AuthProvider>
   );
 }
-
-
 
 export default App;
