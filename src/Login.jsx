@@ -5,8 +5,14 @@ import * as Yup from 'yup'
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Cookies from 'js-cookie'; // Dodaj import
+//przy odzwiezaniu strony, niekoniecznie na razie
+
+import { useAuth } from './AuthContext';
+
 
 export const Login = () => {
+    const { login } = useAuth();
     const navigate = useNavigate();
   
     const onSubmit = async (values) => {
@@ -14,20 +20,20 @@ export const Login = () => {
         // Wyślij dane na backend za pomocą Axios
         const response = await axios.post('http://localhost:8080/api/user/login', values);
 
+
         console.log('Odpowiedź z backendu:', response.data);
+
+        login(response.data);
   
         // Tutaj możesz obsłużyć odpowiedź z backendu, np. pokazać komunikat sukcesu
         // i przekierować użytkownika do strony logowania
 
         // Przechowaj token w stanie aplikacji, np. w localStorage
-        localStorage.setItem('authToken', response.data);
-
-
+        // Pobierz token z odpowiedzi i zapisz w ciasteczku
+       const token = response.data.token;
+       Cookies.set('authToken', token);
 
         navigate('/main');
-
-
-
 
 
       } catch (error) {
