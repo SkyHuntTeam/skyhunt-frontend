@@ -35,7 +35,7 @@ export const Register = () => {
   const onSubmit = async (values) => {
     try {
       // Wyślij dane na backend za pomocą Axios
-      const response = await axios.post('adres-backendowego-endpointu', values);
+      const response = await axios.post('http://localhost:8080/api/user/register', values);
       console.log('Odpowiedź z backendu:', response.data);
 
       // Tutaj możesz obsłużyć odpowiedź z backendu, np. pokazać komunikat sukcesu
