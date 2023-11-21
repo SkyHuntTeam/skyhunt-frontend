@@ -1,3 +1,4 @@
+//strona z polami do wyszukiwania lotów - podaje się info skąd się leci, gdzie, kiedy i ile osób
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -82,7 +83,7 @@ import axios from 'axios';
             </Form>
 
           </Formik>
-          
+
           <button type='submit' style={{ width: '100%', marginTop: '10px' }}>Szukaj</button>
         </div>
       </div>
