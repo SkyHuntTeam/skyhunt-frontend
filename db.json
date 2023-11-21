@@ -1,0 +1,22 @@
+{
+    "samoloty":[
+        {
+            "id": 1,
+            "data": 11,
+            "przewoznik": "rynair",
+            "cena": 220
+        },
+        {
+            "id": 2,
+            "data": 13,
+            "przewoznik": "rynair",
+            "cena": 820
+        },
+        {
+            "id": 3,
+            "data": 13,
+            "przewoznik": "easyJet",
+            "cena": 150
+        }
+    ]
+}
