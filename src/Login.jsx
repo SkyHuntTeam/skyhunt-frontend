@@ -1,3 +1,5 @@
+//strona z formularzem do logowania
+
 import { NavLink } from 'react-router-dom';
 import logo2 from './assets/logo2.png'
 //import{useState} from "react";
@@ -5,21 +7,23 @@ import * as Yup from 'yup'
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Cookies from 'js-cookie'; // Dodaj import
-//przy odzwiezaniu strony, niekoniecznie na razie
 
-import { useAuth } from './AuthContext';
+import { useAuth } from './AuthContext'; //w celu zapamiętania stanu autoryzacji
+
+import Cookies from 'js-cookie'; //zapamiętanie stanu autoryzacji również przy odzwiezaniu strony
+
 
 
 export const Login = () => {
+
     const { login } = useAuth();
     const navigate = useNavigate();
   
     const onSubmit = async (values) => {
+
       try {
         // Wyślij dane na backend za pomocą Axios
         const response = await axios.post('http://localhost:8080/api/user/login', values);
-
 
         console.log('Odpowiedź z backendu:', response.data);
 
@@ -30,25 +34,24 @@ export const Login = () => {
 
         // Przechowaj token w stanie aplikacji, np. w localStorage
         // Pobierz token z odpowiedzi i zapisz w ciasteczku
-       const token = response.data.token;
-       Cookies.set('authToken', token);
 
-        navigate('/main');
+        const token = response.data.token;
+        Cookies.set('authToken', token); //na razie nic nie robią
+
+        navigate('/main'); //po zalogowaniuu przenieś do strony wyszukiwania
 
 
       } catch (error) {
         console.error('Błąd podczas wysyłania danych:', error);
-  
         // Tutaj możesz obsłużyć błąd, np. pokazać komunikat o błędzie
       }
     };
-
-
 
     const initialValues ={
         email:'',
         password:''
     }
+
     const validationSchema = Yup.object({
         email: Yup.string().email("Invalid email format").required("Required"),
         password: Yup.string().required("Required")
@@ -61,10 +64,12 @@ export const Login = () => {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={onSubmit}>
+
                <div className="container_l">
                 <img src={logo2} alt="logo"/>
                 <h1>Witaj!</h1>
                 <span>zaloguj się do swojego konta</span>
+
                 <Form>
                 <div className="form-control">
                 <Field type='email' id='email' name = 'email' style={{width:'80%'}} placeholder="Email"  />
@@ -75,16 +80,14 @@ export const Login = () => {
                 <ErrorMessage name='password'/>
                 </div>
                 <button type='submit'>Zaloguj</button>
-                </Form>               
+                </Form>   
+
                 <hr/>
                 <span >Nie masz konta?</span>
-                
-                <nav>
-                    <NavLink to='register'>Zarejejstruj się</NavLink>
-                </nav>
-                </div> 
+                <nav><NavLink to='register'>Zarejestruj się</NavLink></nav>
+                </div>
+
             </Formik>
-            
         </>
     )
 }
