@@ -1,3 +1,5 @@
+//strona z formularzem rejestracji
+
 import { Separator } from "./components/Separator/Separator";
 import * as Yup from 'yup';
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -30,6 +32,7 @@ const validationSchema = Yup.object({
 });
 
 export const Register = () => {
+
   const navigate = useNavigate();
 
   const onSubmit = async (values) => {
@@ -40,10 +43,11 @@ export const Register = () => {
 
       // Tutaj możesz obsłużyć odpowiedź z backendu, np. pokazać komunikat sukcesu
       // i przekierować użytkownika do strony logowania
+
       navigate('/login');
+
     } catch (error) {
       console.error('Błąd podczas wysyłania danych:', error);
-
       // Tutaj możesz obsłużyć błąd, np. pokazać komunikat o błędzie
     }
   };
@@ -52,9 +56,10 @@ export const Register = () => {
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={onSubmit}
-    >
+      onSubmit={onSubmit}>
+
       <div className="container_r">
+
         <Form>
           <div style={{ display: "flex" }}><h1 style={{ marginLeft: 10 }}>Utwórz konto.</h1></div>
           <div style={{ display: "flex" }}>
@@ -63,56 +68,68 @@ export const Register = () => {
                 <Field type='text' id='name' name='name' placeholder="Imie" />
                 <ErrorMessage name='name' />
               </div>
+
               <div className="form-control">
                 <Field type='text' id='surname' name='surname' placeholder="Nazwisko" />
                 <ErrorMessage name='surname' />
               </div>
+
               <div className="form-control">
                 <Field type='email' id='email' name='email' placeholder="Email" />
                 <ErrorMessage name='email' />
               </div>
+
               <div className="form-control">
                 <Field type='password' id='password' name='password' placeholder="Hasło" />
                 <ErrorMessage name='password' />
               </div>
+
               <div className="form-control">
                 <Field type='password' id='confirmPassword' name='confirmPassword' placeholder="Potwierdź hasło" />
                 <ErrorMessage name='confitmPassword' />
               </div>
-            </div>
+              </div>
+
             <Separator />
             <div className="column">
               <div className="form-control">
                 <Field type='text' id='street' name='street' placeholder="Ulica" />
                 <ErrorMessage name='street' />
               </div>
+
               <div style={{ display: "flex", justifyContent: 'space-between' }}>
                 <div className="form-control">
                   <Field type='text' id='postcode' name='postcode' placeholder="Kod Pocztowy" style={{ width: '50%' }} />
                   <ErrorMessage name='postcode' />
                 </div>
+
                 <div className="form-control">
                   <Field type='text' id='city' name='city' placeholder="Miasto" style={{ width: '80%', marginLeft: -25, flexGrow: 4 }} />
                   <ErrorMessage name='city' />
                 </div>
               </div>
+
               <div className="form-control">
                 <Field type='text' id='country' name='country' placeholder="Kraj" />
                 <ErrorMessage name='country' />
               </div>
+
               <div style={{ padding: 5, marginRight: 10 }}>
                 <div className="form-control">
                   <Field type="checkbox" id="accept" name="accept" />
                 </div>
+
                 <span> Akceptuję </span>
                 <a href="">politykę prywatności </a>
                 <span>oraz </span>
                 <a href="">regulamin</a>
               </div>
+
               <button type='submit'>Zarejestruj się</button>
             </div>
           </div>
         </Form>
+
       </div>
     </Formik>
   );
