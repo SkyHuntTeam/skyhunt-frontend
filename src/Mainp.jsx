@@ -50,7 +50,7 @@ export const Mainp = () => {
   
   const onSubmit = values => {
     console.log('Search form data', values);
-    navigate("/results", values);
+    navigate("/results", {state: {values: values}});
     // request mutate
     // react router przekierowania na strone z wynikami.
   };

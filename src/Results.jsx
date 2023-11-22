@@ -5,7 +5,7 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { fakeRequest } from "./fakeRequest";
 
-const fetchPlanes = async (formValues) => {
+const fetchOffers = async (formValues) => {
   // post
   // const response = await axios({
   //   // headers: { authorization: `Bearer ${token}` },
@@ -17,21 +17,58 @@ const fetchPlanes = async (formValues) => {
   //   },
   // });
   // return response?.data;
-  await fakeRequest();
-  return [
-    { id: 1, cena: 999, przewoznik: "abc" },
-    { id: 2, cena: 1299, przewoznik: "xyz" },
-    { id: 3, cena: 899, przewoznik: "def" },
-    // Add more objects as needed
-  ];
-};
-export const Results = () => {
-  const formValues = useLocation();
 
-  console.log("formValues", formValues);
+  const searchCriteria = {
+    departureQuery: formValues.from,
+    destinationQuery: formValues.to,
+    departureDate: formValues.date
+  }
+
+  console.log(searchCriteria);
+
+  const response = await axios.post(
+      "http://localhost:8080/api/offer/search", searchCriteria);
+
+  console.log(response);
+
+  return response.data.offers;
+};
+
+const anyTransfers = (offer) => {
+  return offer.segments.length > 1;
+}
+
+const numberOfTransfers = (offer) => {
+  return offer.segments.length;
+}
+
+const departureTime = (offer) => {
+  return offer.segments[0].departureTime;
+}
+
+const arrivalTime = (offer) => {
+  return offer.segments[offer.segments.length - 1].arrivalTime;
+}
+
+const renderTransfers = (offer) => {
+  if(anyTransfers(offer)) {
+    return <div><div>Przesiadki:</div>
+      {offer.segments.map((segment, i) => (
+        <div key={i}>
+          Odlot: {segment.departureAirport.name} {segment.departureTime} | Przylot: {segment.arrivalAirport.name} {segment.arrivalTime}
+        </div>
+    ))}</div>;
+  }
+}
+
+export const Results = () => {
+  const {state} = useLocation();
+
+  console.log("state", state);
+
   const { isLoading, data, isError, error } = useQuery({
     queryKey: "planes",
-    queryFn: () => fetchPlanes(formValues),
+    queryFn: () => fetchOffers(state.values),
   });
   if (isLoading) {
     return <h2>Loading..</h2>;
@@ -42,12 +79,11 @@ export const Results = () => {
   return (
     <div>
       <h2>Wyszukiwania</h2>
-      {data?.map((plane) => (
-        <div key={plane.id}>
-          <Link to={`/results/${plane.id}`}>
-            {plane.id} - {plane.cena} - {plane.przewoznik}
-          </Link>
-        </div>
+      {data?.map((offer) => (
+        <p key={offer.token}>
+          <b>Cena: {offer.priceBreakdown.total.units} PLN | Odlot: {departureTime(offer)} | Przylot: {arrivalTime(offer)} | Przesiadki: {numberOfTransfers(offer)}</b>
+          {renderTransfers(offer)}
+        </p>
       ))}
     </div>
   );

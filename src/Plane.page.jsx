@@ -1,7 +1,8 @@
-import { usePlaneData } from "./hooks/usePlaneData";
+//import { usePlaneData } from "./hooks/usePlaneData";
 import { useParams } from "react-router-dom";
 
 export const Plane = () => {
+  /*
   const { planeId } = useParams();
   const { isLoading, data, isError, error } = usePlaneData(planeId);
   if (isLoading) {
@@ -16,4 +17,6 @@ export const Plane = () => {
       {data.id} -- {data.model}
     </div>
   );
+   */
+  return null;
 };
