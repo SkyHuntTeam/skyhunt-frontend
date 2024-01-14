@@ -1,33 +1,34 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import * as Yup from 'yup';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import logo4 from './assets/logo4.png'; // Importuj logo4
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import * as Yup from "yup";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import logo4 from "./assets/logo4.png"; // Importuj logo4
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { Header } from "./Header";
+NavLink;
 
-  const initialValues = {
-    from: "",
-    to: "",
-    date: "",
-    passengers: "",
-  };
+const initialValues = {
+  from: "",
+  to: "",
+  date: "",
+  passengers: "",
+};
 
-  const validationSchema = Yup.object({
-    from: Yup.string().required("Required"),
-    to: Yup.string().required("Required"),
-    date: Yup.date().required("Required"),
-    passengers: Yup.number()
-      .required("Required")
-      .positive("Must be a positive number"),
-  });
+const validationSchema = Yup.object({
+  from: Yup.string().required("Required"),
+  to: Yup.string().required("Required"),
+  date: Yup.date().required("Required"),
+  passengers: Yup.number()
+    .required("Required")
+    .positive("Must be a positive number"),
+});
 
 // const sendFormDataToBackend = async (params) => {
 //   const response = await axios.  navigate('/results');('backendurl', params);
 //   console.log('Odpowiedź z backendu:', response.data)
-  
-// };
 
+// };
 
 export const Mainp = () => {
   const navigate = useNavigate();
@@ -38,7 +39,7 @@ export const Mainp = () => {
   //      onSuccess: () => {
   //        console.log("data send succesfuly!!");
   //        queryClient.invalidateQueries([
-  //           "sendForm"            
+  //           "sendForm"
   //        ]);
 
   //      },
@@ -47,25 +48,17 @@ export const Mainp = () => {
   //      },
   //    }
   //  );
-  
-  const onSubmit = values => {
-    console.log('Search form data', values);
-    navigate("/results", {state: {values: values}});
+
+  const onSubmit = (values) => {
+    console.log("Search form data", values);
+    navigate("/results", { state: { values: values } });
     // request mutate
     // react router przekierowania na strone z wynikami.
   };
 
   return (
     <div>
-      <div className="mainframe">
-        <img
-          className="img-m"
-          src={logo4}
-          alt="logo"
-          style={{ width: "auto", height: "70px" }}
-        />
-        <h2 style={{ marginLeft: "20px" }}>SkyHunt.</h2>
-      </div>
+      <Header />
       <div className="mainpframe">
         <div
           style={{
@@ -106,11 +99,13 @@ export const Mainp = () => {
                 />
                 <ErrorMessage name="passengers" />
               </div>
-              <button type="submit" style={{ width: "100%", marginTop: "10px" }}>
-              Szukaj
-            </button>
+              <button
+                type="submit"
+                style={{ width: "100%", marginTop: "10px" }}
+              >
+                Szukaj
+              </button>
             </Form>
-            
           </Formik>
         </div>
       </div>

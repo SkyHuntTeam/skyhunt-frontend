@@ -1,13 +1,22 @@
 //import {useState} from 'react';
-import {Register} from './Register';
-import {Login} from './Login';
-import {Home} from "./Home";
-import {Mainp} from './Mainp';
-import {Results} from './Results';
-import {Plane} from './Plane.page'
-import './App.css';
-import { QueryClientProvider,  QueryClient } from 'react-query';
-import { BrowserRouter, Route, Routes, Link, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
+import { Register } from "./Register";
+import { Login } from "./Login";
+import { Home } from "./Home";
+import { Mainp } from "./Mainp";
+import { Results } from "./Results";
+import { Plane } from "./Plane.page";
+import "./App.css";
+import { QueryClientProvider, QueryClient } from "react-query";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Link,
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+} from "react-router-dom";
+import { Profile } from "./Profile";
 
 // const router = createBrowserRouter(
 //   createRoutesFromElements(
@@ -17,27 +26,26 @@ import { BrowserRouter, Route, Routes, Link, createBrowserRouter, createRoutesFr
 //       </Route>
 //   )
 // )
-function App() {  
-  const queryClient = new QueryClient()
-  return(
+function App() {
+  const queryClient = new QueryClient();
+  return (
     <QueryClientProvider client={queryClient}>
-    <BrowserRouter>
-    <main>
-      <Routes>
-        <Route path="home" element={<Home/>}/>
-        <Route path="/" element={<Login/>}/>
-        <Route path="/register" element={<Register/>}/>
-        <Route path="main" element={<Mainp/>}/>
-        <Route path="/results" element={<Results/>}/>
-        <Route path='/results/:planeId' element={<Plane/>}/>
-      </Routes>
-    </main>
-     </BrowserRouter>
-    {/* <RouterProvider router={router}/> */}
+      <BrowserRouter>
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="main" element={<Mainp />} />
+            <Route path="/results" element={<Results />} />
+            <Route path="/results/:planeId" element={<Plane />} />
+          </Routes>
+        </main>
+      </BrowserRouter>
+      {/* <RouterProvider router={router}/> */}
     </QueryClientProvider>
   );
 }
-
-
 
 export default App;
