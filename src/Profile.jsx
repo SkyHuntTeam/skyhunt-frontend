@@ -1,6 +1,8 @@
 // import { usePlaneData } from "./hooks/usePlaneData";
 import { useQuery } from "react-query";
 
+import { Header2 } from "./Header2";
+
 const exampleData = {
   firstName: "Alice",
   lastName: "Smith",
@@ -10,14 +12,6 @@ const exampleData = {
     city: "Cityville",
     zipCode: "54321",
   },
-  interests: ["photography", "travel"],
-  workExperience: [
-    {
-      position: "Web Developer",
-      company: "Tech Co",
-      startDate: "2020-01-15",
-    },
-  ],
 };
 
 const fetchProfile = async () => {
@@ -44,9 +38,13 @@ export const Profile = () => {
 
   return (
     <div>
-      {isLoading && <p>Loading...</p>}
-      <p>firstName: {data.firstName}</p>
-      <p>lastName: {data.lastName}</p>
+      <Header2 />
+      <div className="planeframe">
+        {isLoading && <p>Loading...</p>}
+        <p className="pp">Imie: {data.firstName}</p>
+        <p className="pp">Nazwisko: {data.lastName}</p>
+        <p className="pp">Mail: {data.email}</p>
+      </div>
     </div>
   );
 };

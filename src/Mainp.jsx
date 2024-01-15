@@ -79,15 +79,33 @@ export const Mainp = () => {
           >
             <Form style={{ width: "100%" }}>
               <div className="form-control full-width">
-                <Field type="text" id="from" name="from" placeholder="Skąd" />
+                <Field
+                  type="text"
+                  id="from"
+                  name="from"
+                  placeholder="Skąd"
+                  style={{ width: "60%", marginTop: "10px", marginLeft: "5px" }}
+                />
                 <ErrorMessage name="from" />
               </div>
               <div className="form-control full-width">
-                <Field type="text" id="to" name="to" placeholder="Dokąd" />
+                <Field
+                  type="text"
+                  id="to"
+                  name="to"
+                  placeholder="Dokąd"
+                  className="form-control"
+                  style={{ width: "60%", marginTop: "10px", marginLeft: "5px" }}
+                />
                 <ErrorMessage name="to" />
               </div>
               <div className="form-control full-width">
-                <Field type="date" id="date" name="date" />
+                <Field
+                  type="date"
+                  id="date"
+                  name="date"
+                  style={{ width: "60%", marginTop: "10px", marginLeft: "5px" }}
+                />
                 <ErrorMessage name="date" />
               </div>
               <div className="form-control full-width">
@@ -96,6 +114,7 @@ export const Mainp = () => {
                   id="passengers"
                   name="passengers"
                   placeholder="Liczba pasażerów"
+                  style={{ width: "60%", marginTop: "10px", marginLeft: "5px" }}
                 />
                 <ErrorMessage name="passengers" />
               </div>

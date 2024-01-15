@@ -33,7 +33,12 @@ export const BookPlane = (planeId) => {
     <div>
       {isLoading && <p>isLoading...</p>}
       {error && <p>{error}</p>}
-      <button onClick={handleOnButtonClick}>zarezerwuj</button>
+      <button
+        onClick={handleOnButtonClick}
+        style={{ width: "80%", margin: " 20px, 0, 0, 10 px" }}
+      >
+        Zarezerwuj
+      </button>
     </div>
   );
 };

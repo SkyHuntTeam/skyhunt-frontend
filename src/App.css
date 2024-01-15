@@ -115,14 +115,15 @@ button {
 .profilb {
   border: 1px solid #f3f6f8;
   border-radius: 9px;
-  color: black;
-  padding: 13px 45px;
+  color: rgb(65, 63, 63);
+  padding: 13px 35px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   background-color: #ffffff;
-  font-size: 15px;
   letter-spacing: 1px;
-  margin-top: 2%;
-  margin-left: 10%;
+  margin-top: 3%;
+  margin-left: 13%;
+  text-align: center;
+  align-items: center;
 }
 .b_h {
   text-align: center;
@@ -189,18 +190,6 @@ a {
   letter-spacing: 1px;
   margin: 0 10px 0 10px;
 }
-/* .mainpframe{
- 
- 
-  border: 2px solid rgba(255, 190, 50, 1);
-  height: 380px;
-  width: 700px;
-  margin: auto;
-  margin-top: 30px;
-  border-radius: 12px;
-  background-color: rgba(255, 190, 50, 1);
-  padding: 15px;
-} */
 
 .mainpframe {
   border: 2px solid rgba(255, 190, 50, 1);
@@ -218,4 +207,58 @@ a {
 
 .full-width {
   width: 100%;
+}
+
+.result {
+  background-color: rgb(54, 53, 53);
+  color: #ffffff;
+  margin-bottom: 20px;
+  border: 3px solid rgb(54, 53, 53);
+  margin-left: 15%;
+  width: 70%;
+  justify-content: center;
+  border-radius: 4px;
+  font-size: 20px;
+}
+
+.przesiadki {
+  background-color: rgb(255, 255, 255);
+  color: rgb(54, 53, 53);
+}
+
+.planeframe {
+  background-color: #ffffff;
+  color: rgb(54, 53, 53);
+  margin-bottom: 5px;
+  margin-top: 30px;
+  border: 3px solid rgb(54, 53, 53);
+  margin-left: 2%;
+  width: 50%;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.planeframe2 {
+  background-color: rgba(241, 250, 255, 1);
+  color: rgb(54, 53, 53);
+  margin-bottom: 5px;
+  margin-top: 30px;
+  border: 3px solid rgba(241, 250, 255, 1);
+  margin-left: 2%;
+  width: 50%;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+.pp {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  border: none;
+  height: 15px;
+  width: 500px;
+  padding: 3px 10px;
+  margin-top: 0px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #2d3032;
+  font-family: Verdana, Arial;
 }
