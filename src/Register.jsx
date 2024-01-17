@@ -1,6 +1,8 @@
 import { Separator } from "./components/Separator/Separator";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const initialValues = {
   name: "",
@@ -14,9 +16,7 @@ const initialValues = {
   country: "",
   accept: false,
 };
-const onSubmit = (values) => {
-  console.log("Form data", values);
-};
+
 const validationSchema = Yup.object({
   name: Yup.string().required("Required"),
   surname: Yup.string().required("Required"),
@@ -34,6 +34,32 @@ const validationSchema = Yup.object({
   ),
 });
 export const Register = () => {
+  const navigate = useNavigate();
+
+  const onSubmit = (values) => {
+    console.log("Form data", values);
+
+    const registerForm = {
+      name: values.name,
+      surname: values.surname,
+      email: values.email,
+      password: values.password,
+      street: values.street,
+      postcode: values.postcode,
+      country: values.country,
+      accept: values.accept
+    };
+
+    axios.post(
+        "http://localhost:8080/api/user/register",
+        registerForm
+    ).then(response => {
+      navigate("/login");
+    }).catch((reject) => {
+      console.log(reject);
+    });
+  };
+
   return (
     <Formik
       initialValues={initialValues}

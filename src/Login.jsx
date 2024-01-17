@@ -1,8 +1,10 @@
-import { NavLink } from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import logo2 from "./assets/logo2.png";
 //import{useState} from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import axios from "axios";
+import loggedUser from "./LoggedUser.js";
 
 export const Login = () => {
   const initialValues = {
@@ -13,8 +15,25 @@ export const Login = () => {
     email: Yup.string().email("Invalid email format").required("Required"),
     password: Yup.string().required("Required"),
   });
+  const navigate = useNavigate();
+
   const onSubmit = (values) => {
     console.log("Form data", values);
+
+    const loginForm = {
+      email: values.email,
+      password: values.password,
+    };
+
+    axios.post(
+        "http://localhost:8080/api/user/login",
+        loginForm
+    ).then(response => {
+      loggedUser.token = response.data.token;
+      navigate("/");
+    }).catch((reject) => {
+      console.log(reject);
+    });
   };
   return (
     <>

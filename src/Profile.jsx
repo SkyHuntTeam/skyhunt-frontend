@@ -2,6 +2,8 @@
 import { useQuery } from "react-query";
 
 import { Header2 } from "./Header2";
+import axios from "axios";
+import loggedUser from "./LoggedUser.js";
 
 const exampleData = {
   firstName: "Alice",
@@ -15,12 +17,26 @@ const exampleData = {
 };
 
 const fetchProfile = async () => {
-  await new Promise((res) =>
-    setTimeout(() => {
-      res(1);
-    }, 1000)
-  );
-  return exampleData;
+  return axios.get(
+      "http://localhost:8080/api/user",
+      {
+        'headers': {'Authorization': 'Bearer ' + loggedUser.token}
+      }
+  ).then(response => {
+    const user = response.data;
+    return {
+      firstName: user.name,
+      lastName: user.surname,
+      age: 25,
+      email: user.email,
+      address: {
+        city: "Cityville",
+        zipCode: "54321",
+      }
+    }
+  }).catch((reject) => {
+    console.log(reject);
+  });
 };
 
 export const Profile = () => {

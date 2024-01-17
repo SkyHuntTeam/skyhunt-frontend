@@ -247,17 +247,23 @@ const fetchOffers = async (formValues) => {
   //   departureDate: formValues.date,
   // };
 
-  // console.log(searchCriteria);
+  const searchCriteria = {
+    departureQuery: formValues.from,
+    destinationQuery: formValues.to,
+    departureDate: formValues.date,
+  };
 
-  // const response = await axios.post(
-  //   "http://localhost:8080/api/offer/search",
-  //   searchCriteria
-  // );
+  const response = await axios.post(
+     "http://localhost:8080/api/offer/search",
+     searchCriteria
+  );
+
+  return response.data.offers;
 
   // console.log(response);
 
   // return response.data.offers;
-  return exampleData;
+  //return exampleData;
 };
 
 const anyTransfers = (offer) => {
